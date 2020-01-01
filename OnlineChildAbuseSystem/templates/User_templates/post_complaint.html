@@ -1,0 +1,55 @@
+{% include 'Main_templates/title.html' %}
+<br>
+<br>
+<center>
+    <form action="{% url 'complaint_save' %}" method="post">
+        {% csrf_token %}
+
+    <table align="center" bgcolor="#add8e6" border="0" width="500" >
+        <tr>
+            <th style="color: brown">
+                <h4>Complaint Home page</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Complaint Sender Name:<input type="text" name="csname" placeholder="Name" required>
+            </th>
+        </tr>
+               <tr>
+            <th>
+                Your Place:<input type="text" name="place" placeholder="Place" required>
+            </th>
+        </tr>
+               <tr>
+            <th>
+                Phone Number:<input type="number" name="pnumber" placeholder="Contact Number" required>
+            </th>
+        </tr>
+        <th>
+                Complainting Place:<input type="text" name="cplace" placeholder="Complaint Place" required>
+            </th>
+        <tr>
+            <th>Regarding Complaint Type:
+                <select name="type" required>
+                    <option>Child Abusing</option>
+                    <option>Others</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Complaint:<textarea rows="4" cols="50" name="cd" required>
+                    Enter complaint details here
+                </textarea>
+            </th>
+        </tr>
+        <tr>
+            <th><button type="submit">Submit Complaint</button> </th>
+        </tr>
+    </table>
+        {% for x in messages %}
+        <h4 style="color: brown">{{ x }}</h4>
+        {% endfor %}
+         </form>
+</center>

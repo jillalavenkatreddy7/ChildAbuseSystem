@@ -1,0 +1,74 @@
+{% include 'Main_templates/title.html' %}
+<style type="text/css">
+    a:link{
+        text-decoration: none;
+    }
+</style>
+<br>
+<form action="{% url 'ngopendingregister' %}" method="post">
+    {% csrf_token %}
+<table align="center" bgcolor="#add8e6" border="0">
+    <tr>
+        <th style="color: brown"><h4>NGO'S Registration Page</h4></th>
+    </tr>
+            <tr>
+        <th width="500">
+            NGO Id:<input type="number" name="nid"placeholder="NGO ID" required min="1">
+        </th>
+    </tr>
+        <tr>
+        <th width="500">
+            NGO Place:<input type="text" name="np"placeholder="NGO Place" required>
+        </th>
+    </tr>
+    <tr>
+        <th width="500">
+            NGO Mandal:<input type="text" name="nm"placeholder="Mandal" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            District:<input type="text" name="nd"placeholder="NGO District" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+           NGO volunteer Name:<input type="text" name="nvn"placeholder="Volunteer Name" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            Contact Number:<input type="number" name="ncn"placeholder="Contact Number" max="9999999999999999999999999999999" required>
+        </th>
+    </tr>
+    <tr>
+        <th width="500">
+            NGO Mail:<input type="email" name="nml"placeholder="Mail" required>
+        </th>
+    </tr>
+    <tr><th width="500">
+        Complete Address:<textarea rows="2" cols="30" name="nca" required>
+Enter Complete Address here
+      </textarea>
+    </th>
+    </tr>
+    <tr>
+        <th width="500">
+            Set Password:<input type="password" name="pword" placeholder="Password" required>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <button type="submit">Register</button>
+        </th>
+    </tr>
+</table>
+</form>
+<center>
+    <a href="{% url 'ngoregislogin' %}"><h3>
+        If Already Registered..?Please login here..!
+    </h3></a>
+    {% for x in messages %}
+        <h3 style="color: brown">{{ x }}</h3>
+    {% endfor %}
+</center>

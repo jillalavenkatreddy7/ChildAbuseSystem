@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<style type="text/css">
+    a:link{
+        text-decoration: none;
+    }
+</style>
+{% include 'Main_templates/title.html' %}
+<br>
+<table align="center" border="4"  width="1065" bgcolor="yellow">
+    <tr>
+        <th>
+            <a href="{% url 'admi_home' %}"><button type="button" style="color: red;background-color: lightblue">Home</button></a>
+        </th>
+        <th>
+            <a href="{% url 'pendings' %}"><button type="button"style="color: blue;background-color: lightblue">Pending Police Requests</button></a>
+        </th>
+        <th>
+            <a href="{% url 'approved' %}"><button type="button"style="color: red;background-color: lightblue">Approved Police Requests</button></a>
+        </th>
+        <th>
+            <a href="{% url 'declined_req' %}"><button type="button" style="color: blue;background-color: lightblue">Declined Police Requsets</button></a>
+        </th>
+        <th>
+            <a href="{% url 'pendingngo' %}"><button type="button"style="color: red;background-color: lightblue">Pending NGO'S Requests</button></a>
+        </th>
+        <th>
+            <a href="{% url 'approvedngo' %}"><button type="button"style="color: blue;background-color: lightblue">Approved NGO'S Requests</button></a>
+        </th>
+    </tr>
+        <tr>
+            <th>
+                <a href="{% url 'declinengo' %}"><button type="button"style="color: red;background-color: lightblue">Declined NGO's Requsets</button></a>
+        </th>
+        <th>
+            <a href="{% url 'pendingcomplaints' %}"><button type="button"style="color: blue;background-color: lightblue">Pending Complaints</button></a>
+        </th>
+        <th>
+            <a href="{% url 'pendingletters' %}"><button type="button"style="color: red;background-color: lightblue">Pending News Letters</button></a>
+        </th>
+        <th>
+            <a href="{% url 'declined_c_l' %}"><button type="button"style="color: blue;background-color: lightblue">Declined complaints&Letters</button></a>
+        </th>
+            <th>
+                <a href="{% url 'admin_reports' %}"><button type="button"style="color: red;background-color: lightblue">Reports</button></a>
+        </th>
+            <th>
+                <a href="{% url 'logout' %}"><button type="button"style="color: blue;background-color: lightblue">Logout</button></a>
+        </th>
+    </tr>
+</table>
+<br>
+<br>
+<center>
+    {% if data_reports %}
+            <h3 style="color: brown">
+                <b>{{ data_reports }}</b>
+                <br>
+                <br>
+            <table align="center" border="2" width="500">
+                <tr bgcolor=red>
+                    <th><a href="{% url 'registered_complaints' %}"><button type="button" style="background-color:lightcyan"><b>Registered Complaints</b></button></a></th>
+                    <th><a href="{% url 'solved_complaints' %}"><button type="button" style="background-color:lightcyan"><b>Solved Complaints</b></button></a></th>
+                </tr>
+            </table>
+    </h3>
+    {% endif %}
+<img src="{% static 'images/Admin_image2.jpg'  %}" height="200" width="250">
+    <h2 style="color: brown">
+        Welcome Admin
+    </h2>
+</center>

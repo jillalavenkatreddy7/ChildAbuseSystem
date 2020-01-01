@@ -1,0 +1,137 @@
+{% include 'Main_templates/title.html' %}
+<br>
+{% if data %}
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Approved Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+        <th>Register complaint</th>
+    </tr>
+        {% for x in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ x.complaint_id}}
+        </th>
+        <th>
+            {{ x.complaint_sender_name }}
+        </th>
+        <th>
+            {{ x.complaint_sender_place }}
+        </th>
+        <th>
+            {{ x.complaint_sender_number }}
+        </th>
+            <th>{{x.complaint_details}}</th>
+        <th>{{ x.complainting_place}}</th>
+        <th>{{ x.complaint_status}}</th>
+        <th>{{ x.date_of_giving}}</th>
+            <th><a href="{% url 'register_complaint' x.complaint_id %}">Yes</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <br>
+    <h3 style="color: brown">No Approved Complaints</h3>
+{% endif %}
+{% if data1 %}
+    <br>
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Registered Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+        <th>solved complaint</th>
+    </tr>
+        {% for y in data1 %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ y.complaint_id}}
+        </th>
+        <th>
+            {{ y.complaint_sender_name }}
+        </th>
+        <th>
+            {{ y.complaint_sender_place }}
+        </th>
+        <th>
+            {{ y.complaint_sender_number }}
+        </th>
+            <th>{{y.complaint_details}}</th>
+        <th>{{ y.complainting_place}}</th>
+        <th>{{ y.complaint_status}}</th>
+        <th>{{ y.date_of_giving}}</th>
+            <th><a href="{% url 'solved_complaint' y.complaint_id %}">Yes</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <br>
+    <h3 style="color: brown">No Registered  Complaints</h3>
+{% endif %}
+{% if data2 %}
+    <br>
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Solved Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+    </tr>
+        {% for z in data2 %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ z.complaint_id}}
+        </th>
+        <th>
+            {{ z.complaint_sender_name }}
+        </th>
+        <th>
+            {{ z.complaint_sender_place }}
+        </th>
+        <th>
+            {{ z.complaint_sender_number }}
+        </th>
+            <th>{{z.complaint_details}}</th>
+        <th>{{ z.complainting_place}}</th>
+        <th>{{ z.complaint_status}}</th>
+        <th>{{ z.date_of_giving}}</th>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <br>
+    <h3 style="color: brown">No Solved Complaints</h3>
+{% endif %}
+
+
+
+
+<center>
+    {% for y in messages %}
+        <h3 style="color: brown">{{ y }}</h3>
+    {% endfor %}
+</center>

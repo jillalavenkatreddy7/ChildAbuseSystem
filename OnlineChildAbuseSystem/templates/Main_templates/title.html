@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+        body{
+            text-align: center;
+            background-size: cover;
+            background-repeat:no-repeat;
+        }
+</style>
+<body background="{% static 'images/lightgreen.jpg' %}">
+<br>
+<table align="center" border="0">
+    <tr>
+        <th rowspan="2">
+            <img src="{% static 'images/title_image.png' %}" height="80" width="100">
+        </th>
+        <th style="color: red">
+            <h1>Online Child Abuse System</h1>
+        </th>
+    </tr>
+    <tr>
+        <th style="color: brown" >
+            <marquee>
+                Online Child Abuse System
+            </marquee>
+        </th>
+    </tr>
+</table>
+
+</body>
+</html>

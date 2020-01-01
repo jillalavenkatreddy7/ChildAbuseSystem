@@ -1,0 +1,127 @@
+{% include 'Main_templates/title.html' %}
+<br>
+<br>
+<center>
+{% if data2%}
+    <br>
+      <table align="center" border="2" >
+    <tr>
+        <th colspan="10" style="color: brown">Declined News Letters</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>
+            letter_id
+        </th>
+        <th>
+            sender_name
+        </th>
+        <th>
+            place
+        </th>
+        <th>
+            address
+        </th>
+        <th>
+            sender_mail
+        </th>
+        <th>
+            contact_number
+        </th>
+        <th>
+            status
+        </th>
+        <th>
+            letter_file
+        </th>
+        <th>
+           data_of_posting
+        </th>
+        <th>
+            delete
+        </th>
+    </tr>
+    {% for k in data2%}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ k.letter_id }}
+        </th>
+            <th>
+            {{ k.sender_name }}
+        </th>
+                    <th>
+            {{ k.place }}
+        </th>
+            <th>
+            {{ k.address }}
+        </th>
+            <th>
+            {{ k.sender_mail }}
+        </th>
+        <th>
+            {{ k.contact_number }}
+        </th>
+            <th>
+            {{ k.status}}
+        </th>
+            <th>
+            <a href="{{ k.letter_file.url}}">{{ k.letter_file.url}}</a>
+        </th>
+            <th>
+            {{ k.data_of_posting }}
+        </th>
+            <th><a href="{% url 'decline_letter_delete' k.letter_id %}">yes</a></th>
+        </tr>
+    {% endfor %}
+    </table>
+ {% else %}
+    <h3 style="color: brown">No declined News Letters</h3>
+{% endif %}
+
+<br>
+{% if data1 %}
+    <br>
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Declined Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+        <th>delete complaint</th>
+    </tr>
+        {% for y in data1 %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ y.complaint_id}}
+        </th>
+        <th>
+            {{ y.complaint_sender_name }}
+        </th>
+        <th>
+            {{ y.complaint_sender_place }}
+        </th>
+        <th>
+            {{ y.complaint_sender_number }}
+        </th>
+            <th>{{y.complaint_details}}</th>
+        <th>{{ y.complainting_place}}</th>
+        <th>{{ y.complaint_status}}</th>
+        <th>{{ y.date_of_giving}}</th>
+            <th><a href="{% url 'delete_complaint' y.complaint_id %}">Yes</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <br>
+    <h3 style="color: brown">No Declined  Complaints</h3>
+{% endif %}
+{% for p in messages %}
+    <h4 style="color: brown">{{ p }}</h4>
+{% endfor %}
+</center>

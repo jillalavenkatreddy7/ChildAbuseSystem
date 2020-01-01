@@ -1,0 +1,160 @@
+{% include 'Main_templates/title.html' %}
+<style type="text/css">
+    a:link{
+        text-decoration: none;
+    }
+</style>
+<br>
+<center>
+    <h3 style="color: brown">POLICE HOME PANEL</h3>
+    <br>
+    <table align="center" border="2" bgcolor="yellow" width="1050">
+        <tr>
+            <th>
+                <a href="{% url 'viewcomplaints' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>View Complaints</h3></button></a>
+            </th>
+            <th>
+                <a href="{% url 'viewpprofile' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>View Profile</h3></button></a>
+            </th>
+            <th>
+                <a href="{% url 'police_reports' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>Reports</h3></button></a>
+            </th>
+            <th>
+                <a href="{% url 'p_changepassword' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>Change Password</h3></button></a>
+            </th>
+            <th>
+                <a href="{% url 'p_logout' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>Logout</h3></button></a>
+            </th>
+        </tr>
+    </table>
+<br>
+    {% if data %}
+ <table align="center" border="2">
+    <tr bgcolor="yellow">
+        <th>station_id</th>
+        <th>station_place</th>
+        <th>ci_name</th>
+        <th>mandal</th>
+        <th>District</th>
+        <th>Ph Number</th>
+        <th>station_mail</th>
+        <th>complete_address</th>
+        <th>status</th>
+        <th>Date_of_join</th>
+        <th>Update</th>
+    </tr>
+    {% for x in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ x.police_station_id }}
+        </th>
+            <th>
+            {{ x.station_place}}
+        </th>
+            <th>
+            {{ x.station_ci_name}}
+        </th>
+            <th>
+            {{ x.mandal}}
+        </th>
+                <th>
+            {{ x.District}}
+        </th>
+             </th>
+                <th>
+            {{ x.contact_number}}
+        </th>
+            <th>
+            {{ x.station_mail}}
+        </th>
+            <th>
+            {{ x.complete_address}}
+        </th>
+                 <th>
+            {{ x.status}}
+        </th>
+            <th>
+            {{ x.Date_of_join}}
+        </th>
+        <th> <a href="{% url 'police_update' %}?id={{ x.police_station_id }}">Yes</a></th>
+        </tr>
+    {% endfor %}
+</table>
+    {% endif %}
+{% if data1 %}
+    <form action="{% url 'station_update' %}" method="post">
+    {% csrf_token %}
+<table align="center" bgcolor="#add8e6" border="0">
+    <tr>
+        <th width="500">
+            Station Id:<input type="number" name="sid" value="{{ data1.police_station_id }}" required readonly>
+        </th>
+    </tr>
+        <tr>
+        <th width="500">
+            Station Place:<input type="text" name="sp" value="{{ data1.station_place }}" required>
+        </th>
+    </tr>
+    <tr>
+        <th width="500">
+            Station Mandal:<input type="text" name="sm" value="{{ data1.mandal }}" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            District:<input type="text" name="sd" value="{{ data1.District }}" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            Station CI/SI Name:<input type="text" name="scs" value="{{ data1.station_ci_name }}" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            Contact Number:<input type="number" name="scn" value="{{ data1.contact_number }}" required>
+        </th>
+    </tr>
+    <tr>
+        <th width="500">
+            Station Mail:<input type="email" name="sm" value="{{ data1.station_mail }}" required>
+        </th>
+    </tr>
+    <tr><th width="500">
+        Complete Address:<textarea rows="2" cols="30" name="sca" required>
+{{ data1.complete_address }}
+      </textarea>
+    </th>
+    </tr>
+    <tr>
+        <th>
+            <button type="submit">Update</button>
+        </th>
+    </tr>
+</table>
+</form>
+{% endif %}
+{% if data23 %}
+    <form action="{% url 'p_change_save' %}" method="post">
+    {% csrf_token %}
+        <h2 style="color: brown">Your Old password here:</h2><input type="text" value="{{ data23.password }}" name="changed" required>
+    <button type="submit">Change</button>
+    </form>
+{% endif %}
+{% for y in messages %}
+<h3 style="color: brown">{{ y }}</h3>
+{% endfor %}
+    {% if data_reports %}
+            <h3 style="color: brown">
+                <b>{{ data_reports }}</b>
+                <br>
+                <br>
+            <table align="center" border="2" width="500">
+                <tr bgcolor=red>
+                    <th><a href="{% url 'police_registered_reports' %}"><button type="button" style="background-color:lightcyan"><b>Registered Complaints</b></button></a></th>
+                    <th><a href="{% url 'police_solved_reports' %}"><button type="button" style="background-color:lightcyan"><b>Solved Complaints</b></button></a></th>
+                </tr>
+            </table>
+    </h3>
+    {% endif %}
+</center>

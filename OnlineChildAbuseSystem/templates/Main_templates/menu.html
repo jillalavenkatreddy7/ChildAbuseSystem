@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+    a:link{
+    text-decoration: none;
+    }
+</style>
+<body>
+<table align="center" border="4"  width="1080" bgcolor="yellow">
+    <tr>
+        <th>
+            <a href="{% url 'adminlogin' %}"><button type="button"style="color: blue;background-color: lightblue;width: 100px;height: 50px"><h3>ADMIN</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'userhome' %}"><button type="button"style="color: red;background-color: lightblue;width: 100px;height: 50px"><h3>USERS</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'polregislogin' %}"><button type="button"style="color: blue;background-color: lightblue;width: 100px;height: 50px"><h3>POLICE</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'ngoregislogin' %}"><button type="button"style="color: red;background-color: lightblue;width: 100px;height: 50px"><h3>NGO'S</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'services' %}"><button type="button"style="color: blue;background-color: lightblue;width: 100px;height: 50px"><h3>Services</h3></button></a>
+        </th>
+    </tr>
+</table>
+</body>
+</html>

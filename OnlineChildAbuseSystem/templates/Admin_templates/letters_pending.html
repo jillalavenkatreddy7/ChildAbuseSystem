@@ -1,0 +1,83 @@
+{% include 'Main_templates/title.html' %}
+<br>
+{% if data %}
+    <table align="center" border="2" >
+    <tr>
+        <th colspan="11" style="color: brown">Pending News Letters</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>
+            letter_id
+        </th>
+        <th>
+            sender_name
+        </th>
+        <th>
+            place
+        </th>
+        <th>
+            address
+        </th>
+        <th>
+            sender_mail
+        </th>
+        <th>
+            contact_number
+        </th>
+        <th>
+            status
+        </th>
+        <th>
+            letter_file
+        </th>
+        <th>
+           data_of_posting
+        </th>
+        <th>Approve</th>
+        <th>Decline</th>
+    </tr>
+    {% for k in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ k.letter_id }}
+        </th>
+            <th>
+            {{ k.sender_name }}
+        </th>
+                    <th>
+            {{ k.place }}
+        </th>
+            <th>
+            {{ k.address }}
+        </th>
+            <th>
+            {{ k.sender_mail }}
+        </th>
+        <th>
+            {{ k.contact_number }}
+        </th>
+            <th>
+            {{ k.status}}
+        </th>
+            <th>
+            <a href="{{ k.letter_file.url}}">{{ k.letter_file.url}}</a>
+        </th>
+            <th>
+            {{ k.data_of_posting }}
+        </th>
+        <th>
+            <a href="{% url 'letter_approve' %}?id={{ k.letter_id }}">Yes</a>
+        </th>
+        <th>
+            <a href="{% url 'letter_decline' %}?id={{ k.letter_id }}">Yes</a>
+        </th>
+        </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <h2 style="color: brown">No Pending Letters</h2>
+    <br>
+    {% for x in messages %}
+    <h3 style="color: brown">{{ x }}</h3>
+    {% endfor %}
+{% endif %}

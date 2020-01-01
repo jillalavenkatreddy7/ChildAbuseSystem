@@ -1,0 +1,98 @@
+{% include 'Main_templates/title.html' %}
+<style type="text/css">
+    a:link{
+        text-decoration: none;
+    }
+</style>
+{% if data %}
+    <br>
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Registered Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+    </tr>
+        {% for y in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ y.complaint_id}}
+        </th>
+        <th>
+            {{ y.complaint_sender_name }}
+        </th>
+        <th>
+            {{ y.complaint_sender_place }}
+        </th>
+        <th>
+            {{ y.complaint_sender_number }}
+        </th>
+            <th>{{y.complaint_details}}</th>
+        <th>{{ y.complainting_place}}</th>
+        <th>{{ y.complaint_status}}</th>
+        <th>{{ y.date_of_giving}}</th>
+        </tr>
+        {% endfor %}
+        <tr>
+        <th colspan="8"><a href="{% url 'download_register_complaints' %}">Download Registered Complaints</a></th>
+    </tr>
+    </table>
+
+{% else %}
+    <br>
+    <h3 style="color: brown">No Registered  Complaints</h3>
+{% endif %}
+
+{% if data1 %}
+    <br>
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Solved Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+    </tr>
+        {% for y in data1 %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ y.complaint_id}}
+        </th>
+        <th>
+            {{ y.complaint_sender_name }}
+        </th>
+        <th>
+            {{ y.complaint_sender_place }}
+        </th>
+        <th>
+            {{ y.complaint_sender_number }}
+        </th>
+            <th>{{y.complaint_details}}</th>
+        <th>{{ y.complainting_place}}</th>
+        <th>{{ y.complaint_status}}</th>
+        <th>{{ y.date_of_giving}}</th>
+        </tr>
+        {% endfor %}
+        <tr>
+        <th colspan="8"><a href="{% url 'download_solved_complaints' %}">Download Solved Complaints</a></th>
+    </tr>
+    </table>
+
+{% else %}
+    <br>
+    <h3 style="color: brown">No Solved Complaints</h3>
+{% endif %}
+</center>

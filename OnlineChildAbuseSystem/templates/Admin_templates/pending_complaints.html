@@ -1,0 +1,51 @@
+{% include 'Main_templates/title.html' %}
+<br>
+{% if data %}
+    <table align="center" border="2">
+    <tr>
+        <th style="color: brown" colspan="10">Pending Complaints</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>complaint_id</th>
+        <th>sender_name</th>
+        <th>sender_place</th>
+        <th>sender_number</th>
+        <th>complaint_details</th>
+        <th>complainting_place</th>
+        <th>status</th>
+        <th>date_of_given</th>
+        <th>Approve</th>
+        <th>Decline</th>
+    </tr>
+        {% for x in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ x.complaint_id}}
+        </th>
+        <th>
+            {{ x.complaint_sender_name }}
+        </th>
+        <th>
+            {{ x.complaint_sender_place }}
+        </th>
+        <th>
+            {{ x.complaint_sender_number }}
+        </th>
+            <th>{{x.complaint_details}}</th>
+        <th>{{ x.complainting_place}}</th>
+        <th>{{ x.complaint_status}}</th>
+        <th>{{ x.date_of_giving}}</th>
+            <th><a href="{% url 'approve_complaint' x.complaint_id %}">Yes</a></th>
+            <th><a href="{% url 'decline_complaint' x.complaint_id %}">Yes</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <br>
+    <h3 style="color: brown">No Pending Complaints</h3>
+{% endif %}
+<center>
+    {% for y in messages %}
+        <h3 style="color: brown">{{ y }}</h3>
+    {% endfor %}
+</center>

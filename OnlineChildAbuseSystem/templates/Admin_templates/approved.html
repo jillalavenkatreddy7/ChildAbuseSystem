@@ -1,0 +1,65 @@
+{% include 'Main_templates/title.html' %}
+<br>
+<br>
+{% if data %}
+<table align="center" border="2">
+    <tr bgcolor="yellow">
+        <th>station_id</th>
+        <th>station_place</th>
+        <th>ci_name</th>
+        <th>mandal</th>
+        <th>District</th>
+        <th>Ph Number</th>
+        <th>station_mail</th>
+        <th>complete_address</th>
+        <th>status</th>
+        <th>Date_of_join</th>
+        <th>Delete</th>
+    </tr>
+    {% for x in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ x.police_station_id }}
+        </th>
+            <th>
+            {{ x.station_place}}
+        </th>
+            <th>
+            {{ x.station_ci_name}}
+        </th>
+            <th>
+            {{ x.mandal}}
+        </th>
+                <th>
+            {{ x.District}}
+        </th>
+             </th>
+                <th>
+            {{ x.contact_number}}
+        </th>
+            <th>
+            {{ x.station_mail}}
+        </th>
+            <th>
+            {{ x.complete_address}}
+        </th>
+                 <th>
+            {{ x.status}}
+        </th>
+            <th>
+            {{ x.Date_of_join}}
+        </th>
+        <th> <a href="{% url 'remove' x.police_station_id%}">Remove</a></th>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+<center>
+    <h2 style="color: brown">No Approved data</h2>
+</center>
+{% endif %}
+<center>
+    {% for x in messages %}
+    <h2 style="color: brown">{{ x }}</h2>
+    {% endfor %}
+</center>

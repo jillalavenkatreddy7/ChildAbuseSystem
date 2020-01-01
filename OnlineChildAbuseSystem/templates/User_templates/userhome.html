@@ -1,0 +1,46 @@
+{% include 'Main_templates/title.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+    a:link{
+    text-decoration: none;
+    }
+</style>
+<body>
+<br>
+<br>
+<table align="center" border="4"  width="1080" bgcolor="yellow">
+    <tr>
+        <th>
+            <a href="{% url 'post_complaint' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>POST A COMPLAINT</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'viewnewsletters' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>VIEW NEWS LETTERS</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'user_reports' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>REPORTS</h3></button></a>
+        </th>
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+    {% if data_reports %}
+            <h3 style="color: brown">
+                <b>{{ data_reports }}</b>
+                <br>
+                <br>
+            <table align="center" border="2" width="500">
+                <tr bgcolor=red>
+                    <th><a href="{% url 'uesr_registered_complaints' %}"><button type="button" style="background-color:lightcyan"><b>Registered Complaints</b></button></a></th>
+                    <th><a href="{% url 'uesr_solved_complaints' %}"><button type="button" style="background-color:lightcyan"><b>Solved Complaints</b></button></a></th>
+                </tr>
+            </table>
+    </h3>
+    {% endif %}
+<center>
+    <h1 style="color: brown">User Home Page</h1>
+</center>
+</body>
+</html>

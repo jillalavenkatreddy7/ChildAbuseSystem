@@ -1,0 +1,73 @@
+{% include 'Main_templates/title.html' %}
+<br>
+<br>
+{% if data %}
+<table align="center" border="2">
+    <tr bgcolor="yellow">
+        <th>NGO Id</th>
+        <th>place</th>
+        <th>Volunteer name</th>
+        <th>mandal</th>
+        <th>District</th>
+        <th>Number</th>
+        <th>Mail</th>
+        <th>Address</th>
+        <th>status</th>
+        <th>Date_of_join</th>
+        <th>Approve</th>
+        <th>Decline</th>
+        <th>Delete</th>
+    </tr>
+    {% for x in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ x.ngo_id }}
+        </th>
+            <th>
+            {{ x.ngo_place}}
+        </th>
+            <th>
+            {{ x.ngo_volunteer_name}}
+        </th>
+            <th>
+            {{ x.mandal}}
+        </th>
+                <th>
+            {{ x.District}}
+        </th>
+             </th>
+                <th>
+            {{ x.contact_number}}
+        </th>
+            <th>
+            {{ x.Ngo_mail}}
+        </th>
+            <th>
+            {{ x.complete_address}}
+        </th>
+                 <th>
+            {{ x.status}}
+        </th>
+            <th>
+            {{ x.Date_of_join}}
+        </th>
+        <th>
+            <a href="{% url 'ngoapprove' %}?id={{ x.ngo_id }}">Yes</a>
+        </th>
+        <th>
+            <a href="{% url 'ngodecline' %}?id={{ x.ngo_id }}">Yes</a>
+        </th>
+            <th> <a href="{% url 'ngoremove' %}?id={{ x.ngo_id }}">Remove</a></th>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+<center>
+    <h2 style="color: brown">No pending Requests</h2>
+</center>
+{% endif %}
+<center>
+    {% for x in messages %}
+    <h2 style="color: brown">{{ x }}</h2>
+    {% endfor %}
+</center>

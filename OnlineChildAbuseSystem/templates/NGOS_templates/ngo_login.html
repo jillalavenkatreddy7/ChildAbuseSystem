@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<style type="text/css">
+    a:link{
+        text-decoration: none;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Register_login</title>
+</head>
+<body>
+{% include 'Main_templates/title.html' %}
+<br>
+<br>
+<form action="{% url 'ngocheck' %}" method="post">
+    {% csrf_token %}
+<table align="center" border="0" bgcolor="#add8e6" width="500">
+    <tr>
+        <th><h3>NGO'S Login Page</h3></th>
+    </tr>
+    <tr>
+        <th>
+            NGO'S Id:<input type="text" name="id" placeholder="NGO'S Id" required>
+        </th>
+    </tr>
+        <tr>
+        <th>
+            Pasaword:<input type="password" name="pword" placeholder="Password" required>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <button type="submit">Login</button>
+        </th>
+    </tr>
+</table>
+</form>
+<br>
+<center>
+    <a href="{% url 'ngoregister' %}"><h3>New NGO'S Registration..?Click me to Register.</h3></a>
+    {% for x in messages %}
+        <h3 style="color: brown">{{ x }}</h3>
+    {% endfor %}
+</center>
+</body>
+</html>

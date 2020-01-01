@@ -1,0 +1,388 @@
+{% include 'Main_templates/title.html' %}
+<style type="text/css">
+    a:link{
+        text-decoration: none;
+    }
+</style>
+<br>
+<table align="center" bgcolor="yellow" border="2" width="1070">
+    <tr>
+        <th>
+            <a href="{% url 'postletter' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>Post News Letter</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'viewletters' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>View News Letters</h3></button></a>
+        </th>
+        <th>
+            <a href="{% url 'viewNgoprofile' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>View Profile</h3></button></a>
+        </th>
+        <th><a href="{% url 'nchange_password' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>Change Password</h3></button></a></th>
+        <th>
+            <a href="{% url 'ngologout' %}"><button type="button"style="color: blue;background-color: lightblue"><h3>Logout</h3></button></a>
+        </th>
+    </tr>
+</table>
+<br>
+<center>
+    {% if data %}
+        <table align="center" border="2" width="1070">
+    <tr bgcolor="yellow">
+        <th>NGO Id</th>
+        <th>place</th>
+        <th>Volunteer name</th>
+        <th>mandal</th>
+        <th>District</th>
+        <th>Number</th>
+        <th>Mail</th>
+        <th>Address</th>
+        <th>status</th>
+        <th>Date_of_join</th>
+        <th>Update</th>
+    </tr>
+    {% for x in data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ x.ngo_id }}
+        </th>
+            <th>
+            {{ x.ngo_place}}
+        </th>
+            <th>
+            {{ x.ngo_volunteer_name}}
+        </th>
+            <th>
+            {{ x.mandal}}
+        </th>
+                <th>
+            {{ x.District}}
+        </th>
+             </th>
+                <th>
+            {{ x.contact_number}}
+        </th>
+            <th>
+            {{ x.Ngo_mail}}
+        </th>
+            <th>
+            {{ x.complete_address}}
+        </th>
+                 <th>
+            {{ x.status}}
+        </th>
+            <th>
+            {{ x.Date_of_join}}
+            </th>
+            <th><a href="{% url 'ngoupdate' x.ngo_id %}">Yes</a></th>
+        </tr>
+    {% endfor %}
+</table>
+    {% endif %}
+{% if x %}
+    <form action="{% url 'ngoupdatesave' %}" method="post">
+    {% csrf_token %}
+<table align="center" bgcolor="#add8e6" border="0">
+            <tr>
+        <th width="500">
+            NGO Id:<input type="number" name="nid" value="{{ x.ngo_id }}" readonly required>
+        </th>
+    </tr>
+        <tr>
+        <th width="500">
+            NGO Place:<input type="text" name="np" value="{{ x.ngo_place }}" required>
+        </th>
+    </tr>
+    <tr>
+        <th width="500">
+            NGO Mandal:<input type="text" name="nm" value="{{ x.mandal }}" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            District:<input type="text" name="nd" value="{{ x.District }}" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+           NGO volunteer Name:<input type="text" name="nvn" value="{{ x.ngo_volunteer_name }}" required>
+        </th>
+    </tr>
+            <tr>
+        <th width="500">
+            Contact Number:<input type="number" name="ncn" value="{{ x.contact_number }}" required>
+        </th>
+    </tr>
+    <tr>
+        <th width="500">
+            NGO Mail:<input type="email" name="nml" value="{{ x.Ngo_mail }}" required>
+        </th>
+    </tr>
+    <tr><th width="500">
+        Complete Address:<textarea rows="2" cols="30" name="nca" required>
+{{ x.complete_address }}
+      </textarea>
+    </th>
+    </tr>
+    <tr>
+        <th>
+            <button type="submit">Update</button>
+        </th>
+    </tr>
+</table>
+</form>
+{% endif %}
+{% if np %}
+    <br>
+    <table align="center" border="2" >
+    <tr><th width="500">
+    <form action="{% url 'Change' %}" method="post">
+        {% csrf_token %}
+        <font color="#a52a2a">Your Old password here:</font><input type="text" name="pword" value="{{ np.password }}" required>
+    <button type="submit">Change</button>
+
+    </form>
+            </th>
+        </tr>
+    </table>
+{% endif %}
+    <h3 style="color:brown">NGO'S HOME</h3>
+<br>
+{% if data1 %}
+<h4 style="color: brown;">{{ data1 }}</h4>
+{% endif %}
+{% for z in messages %}
+    <h4 style="color: brown;">{{ z }}</h4>
+{% endfor %}
+{% if newsdata %}
+    <form action="{% url 'postnews' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table align="center" bgcolor="#add8e6" border="2">
+    <tr>
+        <th style="color: brown">Posting News Letter</th>
+    </tr>
+    <tr>
+        <th>
+            <input type="number" name="id" value="{{ newsdata.ngo_id }}" hidden required>
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Browse News Clip img/file:<input type="file" name="file" required>
+        </th>
+    </tr>
+        <tr>
+            <th>
+                <button type="submit">Post</button>
+            </th>
+        </tr>
+    </table>
+    </form>
+{% endif %}
+{% if pending_data %}
+    <table align="center" border="2" >
+    <tr>
+        <th colspan="9" style="color: brown">Pending News Letters</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>
+            letter_id
+        </th>
+        <th>
+            sender_name
+        </th>
+        <th>
+            place
+        </th>
+        <th>
+            address
+        </th>
+        <th>
+            sender_mail
+        </th>
+        <th>
+            contact_number
+        </th>
+        <th>
+            status
+        </th>
+        <th>
+            letter_file
+        </th>
+        <th>
+           data_of_posting
+        </th>
+    </tr>
+    {% for k in pending_data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ k.letter_id }}
+        </th>
+            <th>
+            {{ k.sender_name }}
+        </th>
+                    <th>
+            {{ k.place }}
+        </th>
+            <th>
+            {{ k.address }}
+        </th>
+            <th>
+            {{ k.sender_mail }}
+        </th>
+        <th>
+            {{ k.contact_number }}
+        </th>
+            <th>
+            {{ k.status}}
+        </th>
+            <th>
+            <a href="{{ k.letter_file.url}}">{{ k.letter_file.url}}</a>
+        </th>
+            <th>
+            {{ k.data_of_posting }}
+        </th>
+        </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+{% if approved_data %}
+    <br>
+      <table align="center" border="2" >
+    <tr>
+        <th colspan="9" style="color: brown">Approved News Letters</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>
+            letter_id
+        </th>
+        <th>
+            sender_name
+        </th>
+        <th>
+            place
+        </th>
+        <th>
+            address
+        </th>
+        <th>
+            sender_mail
+        </th>
+        <th>
+            contact_number
+        </th>
+        <th>
+            status
+        </th>
+        <th>
+            letter_file
+        </th>
+        <th>
+           data_of_posting
+        </th>
+    </tr>
+    {% for k in approved_data %}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ k.letter_id }}
+        </th>
+            <th>
+            {{ k.sender_name }}
+        </th>
+                    <th>
+            {{ k.place }}
+        </th>
+            <th>
+            {{ k.address }}
+        </th>
+            <th>
+            {{ k.sender_mail }}
+        </th>
+        <th>
+            {{ k.contact_number }}
+        </th>
+            <th>
+            {{ k.status}}
+        </th>
+            <th>
+            <a href="{{ k.letter_file.url}}">{{ k.letter_file.url}}</a>
+        </th>
+            <th>
+            {{ k.data_of_posting }}
+        </th>
+        </tr>
+    {% endfor %}
+    </table>
+{% endif %}
+{% if declined_data %}
+    <br>
+      <table align="center" border="2" >
+    <tr>
+        <th colspan="10" style="color: brown">Declined News Letters</th>
+    </tr>
+    <tr bgcolor="yellow">
+        <th>
+            letter_id
+        </th>
+        <th>
+            sender_name
+        </th>
+        <th>
+            place
+        </th>
+        <th>
+            address
+        </th>
+        <th>
+            sender_mail
+        </th>
+        <th>
+            contact_number
+        </th>
+        <th>
+            status
+        </th>
+        <th>
+            letter_file
+        </th>
+        <th>
+           data_of_posting
+        </th>
+        <th>
+            delete
+        </th>
+    </tr>
+    {% for k in declined_data%}
+        <tr bgcolor="#a52a2a">
+        <th>
+            {{ k.letter_id }}
+        </th>
+            <th>
+            {{ k.sender_name }}
+        </th>
+                    <th>
+            {{ k.place }}
+        </th>
+            <th>
+            {{ k.address }}
+        </th>
+            <th>
+            {{ k.sender_mail }}
+        </th>
+        <th>
+            {{ k.contact_number }}
+        </th>
+            <th>
+            {{ k.status}}
+        </th>
+            <th>
+            <a href="{{ k.letter_file.url}}">{{ k.letter_file.url}}</a>
+        </th>
+            <th>
+            {{ k.data_of_posting }}
+        </th>
+            <th><a href="{% url 'newsdelete' %}?id={{ k.letter_id }}">yes</a></th>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endif %}
+</center>
